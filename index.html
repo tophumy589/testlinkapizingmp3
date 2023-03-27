@@ -1,7 +1,15 @@
-
+<audio id="testAudio" controls src=""></audio>
 <div id="nut" onclick="playPause()" style="width: 2cm; height: 2cm; background-color: yellow;"></div>
-<add key="webpages:Enabled" value="true" />
-<script>function playPause() {
-  var audio = new Audio('https://mp3-s1-zmp3.zmdcdn.me/b36802b4ccf325ad7ce2/1729810351076897325?authen=exp=1679742488~acl=/b36802b4ccf325ad7ce2/*~hmac=781a2901fd2a99cfdd5d4244c59a7f15&fs=MTY3OTU2OTY4ODU1M3x3ZWJWNnwxMDAwNDQ0NTEwfDI3LjmUsIC3LjE4OC4xMTY')
-  audio.play()
-}</script>
+<script> const music = document.querySelector('#testAudio')
+async function chart() {
+  const getApi = await fetch ('https://api-zingmp3-vercel.vercel.app/api/charthome')
+  const { data } = await getApi.json()
+  const id = data.RTChart.items[0].encodeId
+  console.log(data)
+  const getSsong = await fetch (`https://api-zingmp3-vercel.vercel.app/api/song?type=audio&id=${id}`)
+  const sjson = await getSsong.json()
+  const linkAudio = sjson.data[128]
+  music.src = linkAudio
+  
+}
+chart()</script>
